@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "A transformation layer that sits between orm and json responses",
   "repository": "https://github.com/Thanatad/rc-transform-ts",
-  "main": "/dist/index.js",
-  "types": "/dist/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "/dist"
   ],

@@ -2,7 +2,7 @@ export class DelegatesToResource {
     public resource: object;
     private proxy: any;
 
-    constructor(resource: object) {
+    constructor(resource: any) {
         if (!(resource instanceof Object)) {
             resource = {};
         }
@@ -15,8 +15,8 @@ export class DelegatesToResource {
                     return target[property];
                 }
 
-                if (this.resource[property]) {
-                    return this.resource[property];
+                if (resource[property]) {
+                    return resource[property];
                 }
 
                 return undefined;
