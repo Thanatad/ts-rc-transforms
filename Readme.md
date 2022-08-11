@@ -162,7 +162,7 @@ console.log(collection);
 Create a collection file, `UserCollection.ts`.
 
 ```ts
-class UserCollection {
+export class UserCollection {
     constructor(data: object) {
         return {
             api: "v1",
