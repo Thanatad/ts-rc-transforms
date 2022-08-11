@@ -1,6 +1,6 @@
 {
   "name": "rc-transforms",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A transformation layer that sits between orm and json responses",
   "repository": "https://github.com/Thanatad/ts-rc-transforms",
   "main": "dist/index.js",
