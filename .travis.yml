@@ -1,8 +1,9 @@
+sudo: false
 language: node_js
 node_js:
   - node
-before_install:
-  - npm install -g typescript
+install:
+  - npm install
 script:
   - npm run build
   - npm run test:coveralls
