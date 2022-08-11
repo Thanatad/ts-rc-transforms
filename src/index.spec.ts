@@ -33,6 +33,8 @@ const data: User[] = [{
     updated_at: '2000-02-01'
 }]
 
+const dataNotobject: undefined = undefined;
+
 import { Resource } from "./index";
 
 class UserCollection {
@@ -118,9 +120,9 @@ describe('testing index file', () => {
     });
 
     test('should transform a single item.', () => {
-        const collection = new UserResource(data[0]);
+        const resource = new UserResource(data[0]);
 
-        expect(collection).toEqual(
+        expect(resource).toEqual(
             {
                 "id": 1,
                 "fname": "lalalan",
@@ -243,9 +245,9 @@ describe('testing index file', () => {
     });
 
     test('should transform a single item without toArray.', () => {
-        const collection = new BlankResource(data[0]);
+        const resource = new BlankResource(data[0]);
 
-        expect(collection).toEqual(
+        expect(resource).toEqual(
             {
                 "id": 1,
                 "fname": "lalalan",
@@ -263,4 +265,15 @@ describe('testing index file', () => {
             }
         );
     });
+
+    test('should transform a data not object.', () => {
+        const resource = new BlankResource(dataNotobject);
+
+        expect(resource).toEqual(
+            {}
+        );
+    });
+
+
 });
+

@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/rc-transforms.svg)](https://badge.fury.io/js/rc-transforms)
+
 # rc-transforms
 A transformation layer that sits between orm and json responses
 
