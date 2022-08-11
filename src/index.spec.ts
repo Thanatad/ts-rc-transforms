@@ -1,4 +1,4 @@
-
+import { Resource } from "./index";
 interface Posts {
     topic: string;
 }
@@ -34,8 +34,6 @@ const data: User[] = [{
 }]
 
 const dataNotobject: undefined = undefined;
-
-import { Resource } from "./index";
 
 class UserCollection {
 
