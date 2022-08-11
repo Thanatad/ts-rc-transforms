@@ -53,7 +53,7 @@ export class UserResource extends Resource {
             id: this.id,
             fname: this.fname,
             lname: this.lname,
-            posts: PostResource.collection(this.posts,),
+            posts: PostResource.collection(this.posts),
             created_at: this.created_at,
             updated_at: this.updated_at,
         }
@@ -219,7 +219,7 @@ console.log(collection);
  */
 ```
 
-you can transform a single item data kay with collection wrapper:
+you can transform a single item data key with collection wrapper:
 
 ```ts
 const collection = UserResource.collection(new UserCollection([data[1]]));

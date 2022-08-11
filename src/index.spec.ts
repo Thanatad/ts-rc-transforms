@@ -216,7 +216,7 @@ describe('testing index file', () => {
         );
     });
 
-    test('should transform a single item data kay with collection wrapper.', () => {
+    test('should transform a single item data key with collection wrapper.', () => {
         const collection = UserResource.collection(new UserCollection([data[1]]));
 
         expect(collection).toEqual(
