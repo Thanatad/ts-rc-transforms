@@ -18,10 +18,27 @@ pnpm add rc-transforms
 
 # Programmatic Usage
 
+Create a resource file, `PostResource.ts`.
+
+```ts
+import { Resource } from "rc-transforms";
+
+export class PostResource extends Resource {
+    topic: string;
+
+    toArray() {
+        return {
+            topic: this.topic
+        }
+    }
+}
+```
+
 Create a resource file, `UserResource.ts`.
 
 ```ts
 import { Resource } from "rc-transforms";
+import { PostResource } from "./PostResource"
 
 export class UserResource extends Resource {
     id: number;
@@ -45,6 +62,7 @@ export class UserResource extends Resource {
 ```
 
 Create some data and interface, maybe in `data.ts`
+
 ```ts
 export interface Posts {
     topic: string;
@@ -82,7 +100,8 @@ export const data: User[] = [{
 ```
 
 you can transform a single item:
-```TS
+
+```ts
 const resource = new UserResource(data[0]);
 console.log(resource);
 /**
@@ -105,7 +124,8 @@ console.log(resource);
 ```
 
 you can transform a all of them:
-```TS
+
+```ts
 const collection = UserResource.collection(data);
 console.log(collection);
 /**
@@ -136,5 +156,93 @@ console.log(collection);
                     "updated_at": "2000-02-01"
                 }
             ]
+ */
+```
+
+Create a collection file, `UserCollection.ts`.
+
+```ts
+class UserCollection {
+    constructor(data: object) {
+        return {
+            api: "v1",
+            meta: {
+                next: "---",
+                prev: "---"
+            },
+            data: data
+        }
+    }
+}
+```
+
+you can transform a collection wrapper:
+
+```ts
+const collection = UserResource.collection(new UserCollection(data));
+console.log(collection);
+/**
+            {
+                "api": "v1",
+                "meta": {
+                    "next": "---",
+                    "prev": "---"
+                },
+                "data": [
+                    {
+                        "id": 1,
+                        "fname": "lalalan",
+                        "lname": "nana",
+                        "posts": [
+                            {
+                                "topic": "im cool"
+                            },
+                            {
+                                "topic": "so cool cool"
+                            }
+                        ],
+                        "created_at": "1990-02-01",
+                        "updated_at": "2000-02-01"
+                    },
+                    {
+                        "id": 2,
+                        "fname": "bababan",
+                        "lname": "nana",
+                        "posts": [
+
+                        ],
+                        "created_at": "1990-02-01",
+                        "updated_at": "2000-02-01"
+                    }
+                ]
+            }
+ */
+```
+
+you can transform a single item data kay with collection wrapper:
+
+```ts
+const collection = UserResource.collection(new UserCollection([data[1]]));
+console.log(collection);
+/**
+            {
+                "api": "v1",
+                "meta": {
+                    "next": "---",
+                    "prev": "---"
+                },
+                "data": [
+                    {
+                        "id": 2,
+                        "fname": "bababan",
+                        "lname": "nana",
+                        "posts": [
+
+                        ],
+                        "created_at": "1990-02-01",
+                        "updated_at": "2000-02-01"
+                    }
+                ]
+            }
  */
 ```
