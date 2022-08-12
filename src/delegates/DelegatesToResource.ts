@@ -1,29 +1,28 @@
 export class DelegatesToResource {
-    public resource: object;
-    private proxy: any;
+  public resource: object;
+  private proxy: any;
 
-    constructor(resource: any) {
-        if (!(resource instanceof Object)) {
-            resource = {};
+  constructor(resource: any) {
+    if (!(resource instanceof Object)) {
+      resource = {};
+    }
+
+    this.resource = resource;
+
+    this.proxy = new Proxy(this, {
+      get(target: any, property) {
+        if (target[property]) {
+          return target[property];
         }
 
-        this.resource = resource;
+        if (resource[property]) {
+          return resource[property];
+        }
 
-        this.proxy = new Proxy(this, {
-            get(target: any, property) {
-                if (target[property]) {
-                    return target[property];
-                }
+        return undefined;
+      },
+    });
 
-                if (resource[property]) {
-                    return resource[property];
-                }
-
-                return undefined;
-            },
-        });
-
-        return this.proxy;
-    }
+    return this.proxy;
+  }
 }
-
